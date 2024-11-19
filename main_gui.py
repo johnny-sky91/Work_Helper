@@ -63,7 +63,7 @@ class Application(tk.Tk):
                     old_po=self.entries["po_old"].get(),
                     new_po=self.entries["po_new"].get(),
                     old_stock=self.entries["stock_old"].get(),
-                    new_stock=self.entries["stock_old"].get(),
+                    new_stock=self.entries["stock_new"].get(),
                     report_path=paths["PATH_MAIN_FOLDER"],
                 )
             ),
@@ -99,8 +99,8 @@ class Application(tk.Tk):
         def wrapper():
             try:
                 func()
-            except Exception as e:
-                error_trace = traceback.format_exc().strip().split("\n")[-1]
+            except Exception:
+                error_trace = traceback.format_exc()
                 messagebox.showerror("Error", error_trace)
 
         return wrapper
