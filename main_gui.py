@@ -41,7 +41,7 @@ class Application(tk.Tk):
     def select_widgets(self):
         select_data = {
             "Stock_old": lambda path_name="stock_old": self.select_path(path_name),
-            "Stoc_new": lambda path_name="stoc_new": self.select_path(path_name),
+            "Stoc_new": lambda path_name="stock_new": self.select_path(path_name),
             "PO_old": lambda path_name="po_old": self.select_path(path_name),
             "PO_new": lambda path_name="po_new": self.select_path(path_name),
         }
@@ -50,7 +50,7 @@ class Application(tk.Tk):
             bt.grid(row=index + 1, column=0, padx=5, pady=5)
 
     def entry_widgets(self):
-        entries_list = ["stock_old", "stoc_new", "po_old", "po_new"]
+        entries_list = ["stock_old", "stock_new", "po_old", "po_new"]
         for index, entry_name in enumerate(entries_list):
             entry = tk.Entry(self, name=entry_name, width=40)
             entry.grid(row=index + 1, column=1, padx=5, pady=5)
