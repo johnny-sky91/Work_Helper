@@ -1,9 +1,9 @@
 import pandas as pd
 
 
-def set_second_row_as_headers(df):
+def set_first_row_as_headers(df):
     df.columns = df.iloc[0]
-    df = df[2:]
+    df = df[1:]
     df.reset_index(drop=True, inplace=True)
     return df
 
@@ -22,9 +22,12 @@ class CheckDiffrences:
     def _read_file(self):
         self.raw_old_data = pd.read_excel(self.old_file_path)
         self.raw_new_data = pd.read_excel(self.new_file_path)
+
         if self.data_type == "po":
-            set_second_row_as_headers(df=self.raw_old_data)
-            set_second_row_as_headers(df=self.raw_new_data)
+            set_first_row_as_headers(df=self.raw_old_data)
+            set_first_row_as_headers(df=self.raw_new_data)
+            self.raw_old_data = self.raw_old_data.iloc[1:, :]
+            self.raw_new_data = self.raw_new_data.iloc[1:, :]
 
     def _filter_data(self):
         if self.data_type == "stock":
@@ -37,7 +40,13 @@ class CheckDiffrences:
             self.new_data = self.raw_new_data[
                 self.raw_new_data["Confirmation Type"] == "SSD"
             ]
-            ready_list = ["Customer Part #", "MAD Date", "SSD Qty", "Customer PO #"]
+            ready_list = [
+                "Customer Part #",
+                "MAD Date",
+                "SSD Qty",
+                "ASN Qty",
+                "Customer PO #",
+            ]
             self.old_data = self.old_data[ready_list]
             self.new_data = self.new_data[ready_list]
 
@@ -52,4 +61,5 @@ class CheckDiffrences:
         self._read_file()
         self._filter_data()
         self._get_diffrences()
+
         return self.raw_old_data, self.raw_new_data, self.diffences

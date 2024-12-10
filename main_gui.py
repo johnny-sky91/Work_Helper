@@ -41,7 +41,7 @@ class Application(tk.Tk):
     def select_widgets(self):
         select_data = {
             "Stock_old": lambda path_name="stock_old": self.select_path(path_name),
-            "Stoc_new": lambda path_name="stock_new": self.select_path(path_name),
+            "Stock_new": lambda path_name="stock_new": self.select_path(path_name),
             "PO_old": lambda path_name="po_old": self.select_path(path_name),
             "PO_new": lambda path_name="po_new": self.select_path(path_name),
         }

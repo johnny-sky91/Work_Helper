@@ -29,10 +29,10 @@ def All_diffrences(old_stock, new_stock, old_po, new_po, report_path):
         diff_stock.to_excel(writer, sheet_name="Stock_diffrence", index=True)
         diff_po.to_excel(writer, sheet_name="PO_diffrence", index=True)
 
-        raw_old_po.to_excel(writer, sheet_name="PO_old_raw", index=True)
-        raw_new_po.to_excel(writer, sheet_name="PO_new_raw", index=True)
+        raw_old_po.to_excel(writer, sheet_name="PO_old_raw", index=False)
+        raw_new_po.to_excel(writer, sheet_name="PO_new_raw", index=False)
 
-        raw_old_stock.to_excel(writer, sheet_name="Stock_old_raw", index=True)
-        raw_new_stock.to_excel(writer, sheet_name="Stock_new_raw", index=True)
+        raw_old_stock.to_excel(writer, sheet_name="Stock_old_raw", index=False)
+        raw_new_stock.to_excel(writer, sheet_name="Stock_new_raw", index=False)
 
     return None
